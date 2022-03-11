@@ -43,6 +43,7 @@ const MessageSimpleWithContext = <
     handleAction,
     handleOpenThread,
     handleRetry,
+    highlighted,
     isMyMessage,
     isReactionEnabled,
     message,
@@ -67,7 +68,6 @@ const MessageSimpleWithContext = <
   } = useComponentContext<StreamChatGenerics>('MessageSimple');
 
   const messageWrapperRef = useRef<HTMLDivElement | null>(null);
-
   const hasAttachment = messageHasAttachments(message);
   const hasReactions = messageHasReactions(message);
 
@@ -111,6 +111,7 @@ const MessageSimpleWithContext = <
 					`.trim()}
           key={message.id}
           ref={messageWrapperRef}
+          style={{ ...(highlighted ? { border: '1px solid red' } : {}) }}
         >
           <MessageStatus />
           {message.user && (
