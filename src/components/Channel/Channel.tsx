@@ -513,6 +513,7 @@ const ChannelInner = <
   const jumpToMessage = async (messageId: string) => {
     dispatch({ loadingMore: true, type: 'setLoadingMore' });
     await channel.state.loadMessageIntoState(messageId);
+
     // TODO: figure out how to determine if we have more messages.
     const hasMoreMessages = true;
     loadMoreFinished(hasMoreMessages, channel.state.messages);
@@ -521,6 +522,10 @@ const ChannelInner = <
       highlightedMessageId: messageId,
       type: 'jumpToMessageFinished',
     });
+    // TODO: better ideas on how or when to clear highlight?
+    setTimeout(() => {
+      dispatch({ type: 'clearHighlightedMessage' });
+    }, 500);
   };
 
   const updateMessage = (
