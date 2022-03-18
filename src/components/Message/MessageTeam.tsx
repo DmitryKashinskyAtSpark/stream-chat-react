@@ -193,7 +193,7 @@ const MessageTeamWithContext = <
                   data-testid='message-team-actions'
                 >
                   {showDetailedReactions && <ReactionSelector ref={reactionSelectorRef} />}
-                  {isReactionEnabled && (
+                  {isReactionEnabled && !isFrozen && (
                     <span
                       data-testid='message-team-reaction-icon'
                       onClick={onReactionListClick}
